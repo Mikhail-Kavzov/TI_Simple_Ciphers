@@ -250,13 +250,16 @@ namespace ShiphrLab {
 					
 					int p = Fname.length() - 1;
 					std::string NewName = Fname;
-
-					while (NewName[p] != '.')
+					size_t posit = NewName.find("_Res");
+					if (posit == std::string::npos)
 					{
-						p--;
+						while (NewName[p] != '.')
+						{
+							p--;
+						}
+						NewName.insert(p, "_Res");
 					}
-					
-					NewName.insert(p, "_Res");
+					else NewName.erase(posit,4);
 					
 					
 					std::wifstream in;
